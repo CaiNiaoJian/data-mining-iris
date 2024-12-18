@@ -1,0 +1,180 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{ctex}  % 支持中文
+\usepackage{graphicx}  % 插入图片
+\usepackage{amsmath}  % 数学公式
+\usepackage{listings}  % 代码列表
+\usepackage{xcolor}  % 颜色
+\usepackage{hyperref}  % 超链接
+\usepackage{geometry}  % 页面设置
+\usepackage{float}  % 图片浮动位置
+
+% 页面设置
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+% 代码样式设置
+\lstset{
+    language=Python,
+    basicstyle=\small\ttfamily,
+    numbers=left,
+    numberstyle=\tiny,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    captionpos=b
+}
+
+\title{基于K-means算法的鸢尾花数据集聚类分析}
+\author{数据挖掘实验报告}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+本实验基于经典的鸢尾花（Iris）数据集，实现并分析了K-means聚类算法。通过对算法的实现、参数优化和结果可视化，深入研究了K-means算法在实际数据集上的应用效果。实验结果表明��K-means算法能够有效地对鸢尾花数据进行聚类分析，并取得了良好的聚类效果。
+\end{abstract}
+
+\tableofcontents
+
+\section{引言}
+\subsection{研究背景}
+聚类分析是数据挖掘和机器学习中的重要任务之一，其目的是将相似的数据对象划分到同一个簇中，而将不相似的对象划分到不同簇中。K-means算法作为最经典的聚类算法之一，因其简单、高效的特点而被广泛应用。
+
+\subsection{研究目的}
+本实验旨在：
+\begin{itemize}
+    \item 实现K-means聚类算法
+    \item 分析算法在鸢尾花数据集上的表现
+    \item 通过可视化手段理解聚类结果
+    \item 评估聚类效果并进行参数优化
+\end{itemize}
+
+\section{理论基础}
+\subsection{K-means算法原理}
+K-means算法的基本思想是通过迭代方式寻找K个簇的一种划分方案，使得聚类结果对应的代价函数最小。其主要步骤如下：
+
+\begin{enumerate}
+    \item 随机选择K个点作为初始聚类中心
+    \item 计算每个数据点到各个聚类中心的距离，将其划分到最近的聚类中心所对应的簇
+    \item 重新计算每个簇的中心点（计算簇内所有点的均值）
+    \item 重复步骤2和3，直到聚类中心不再发生变化或达到最大迭代次数
+\end{enumerate}
+
+\subsection{评估指标}
+本实验使用以下指标评估聚类效果：
+\begin{itemize}
+    \item SSE（簇内误差平方和）：评估簇内的紧密度
+    \item 轮廓系数：评估簇的分离度和紧密度
+    \item 聚类准确率：与真实标签比较的正确率
+\end{itemize}
+
+\section{实验设计}
+\subsection{数据集说明}
+鸢尾花数据集包含150个样本，每个样本有4个特征：
+\begin{itemize}
+    \item 萼片长度（Sepal Length）
+    \item 萼片宽度（Sepal Width）
+    \item 花瓣长度（Petal Length）
+    \item 花瓣宽度（Petal Width）
+\end{itemize}
+
+数据集包含三个品种的鸢尾花：Setosa、Versicolor和Virginica，每类50个样本。
+
+\subsection{实验环境}
+\begin{itemize}
+    \item 编程语言：Python 3.6+
+    \item 主要库：NumPy, Pandas, Matplotlib, Scikit-learn
+    \item 开发环境：Visual Studio Code
+\end{itemize}
+
+\subsection{实验流程}
+\begin{enumerate}
+    \item 数据预处理
+    \begin{itemize}
+        \item 数据加载和清洗
+        \item 特征标准化
+        \item 数据可视化分析
+    \end{itemize}
+    
+    \item 算法实现
+    \begin{itemize}
+        \item 实现K-means核心算法
+        \item 实现评估指标计算
+        \item 实现结果可视化
+    \end{itemize}
+    
+    \item 参数优化
+    \begin{itemize}
+        \item 使用肘部法则确定最优K值
+        \item 分析不同K值对聚类效果的影响
+    \end{itemize}
+\end{enumerate}
+
+\section{实验结果与分析}
+\subsection{数据分布分析}
+通过特征分布图和散点矩阵，我们可以观察到：
+\begin{itemize}
+    \item 不同特征的分布特征
+    \item 特征之间的相关性
+    \item 数据的可分性
+\end{itemize}
+
+\subsection{聚类结果分析}
+\subsubsection{最优K值选择}
+通过肘部曲线和轮廓系数分析，我们发现：
+\begin{itemize}
+    \item K=3时，SSE下降趋势变缓
+    \item K=3时，轮廓系数达到较高值
+    \item 这与数据集中实际的三个品种数量相符
+\end{itemize}
+
+\subsubsection{聚类效果评估}
+在K=3的情况下：
+\begin{itemize}
+    \item 聚类准确率达到较高水平
+    \item 簇内紧密度良好
+    \item 簇间分离度明显
+\end{itemize}
+
+\subsection{算法性能分析}
+\begin{itemize}
+    \item 收敛速度快，一般在10次迭代内收敛
+    \item 计算复杂度适中，适合中等规模数据集
+    \item 对初始中心点的选择较为敏感
+\end{itemize}
+
+\section{结论与展望}
+\subsection{主要结论}
+\begin{itemize}
+    \item K-means算法在鸢尾花数据集上表现���好
+    \item 算法能够有效识别数据集中的自然聚类
+    \item 通过参数优化可以进一步提升聚类效果
+\end{itemize}
+
+\subsection{改进方向}
+\begin{itemize}
+    \item 优化初始中心点的选择策略
+    \item 考虑使用其他距离度量方式
+    \item 结合其他算法进行集成学习
+\end{itemize}
+
+\section{参考文献}
+\begin{enumerate}
+    \item MacQueen, J. (1967). Some methods for classification and analysis of multivariate observations.
+    \item Fisher, R. A. (1936). The use of multiple measurements in taxonomic problems.
+    \item Scikit-learn: Machine Learning in Python, Pedregosa et al., JMLR 12, pp. 2825-2830, 2011.
+\end{enumerate}
+
+\appendix
+\section{代码实现}
+\subsection{K-means核心实现}
+\lstinputlisting[caption=K-means算法实现]{kmeans_improved.py}
+
+\subsection{数据可视化实现}
+\lstinputlisting[caption=数据可视化实现]{data_visualization.py}
+
+\end{document} 

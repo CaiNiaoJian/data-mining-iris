@@ -1,0 +1,61 @@
+\documentclass{article} % 定义文档类型  
+
+\usepackage[utf8]{inputenc} % 设置字符编码  
+\usepackage{amsmath} % 数学符号支持  
+\usepackage{graphicx} % 插入图片  
+\usepackage{booktabs} % 表格样式  
+
+\title{我的 LaTeX 示例} % 文档标题  
+\author{你的名字} % 作者  
+\date{\today} % 日期  
+
+\begin{document} % 文档开始  
+
+\maketitle % 生成标题  
+
+\section{引言} % 第一章节  
+在本示例中，我们将介绍 LaTeX 的基本用法。LaTeX 是一个强大的排版系统，广泛用于学术论文和技术文档的编写。  
+
+\section{数学示例} % 第二章节  
+LaTeX 对于数学公式的支持非常出色。下面是一个简单的数学公式：  
+\begin{equation}  
+E = mc^2  
+\end{equation}  
+
+\section{列表示例} % 第三章节  
+这里是一个无序列表：  
+\begin{itemize}  
+    \item 项目一  
+    \item 项目二  
+    \item 项目三  
+\end{itemize}  
+
+\section{表格示例} % 第四章节  
+以下是一个简单的表格：  
+\begin{table}[h]  
+    \centering  
+    \caption{示例表格} % 表格标题  
+    \begin{tabular}{cccc}  
+        \toprule  
+        姓名 & 年龄 & 性别 & 职业 \\
+        \midrule  
+        张三 & 28 & 男 & 工程师 \\
+        李四 & 22 & 女 & 学生 \\
+        王五 & 30 & 男 & 教师 \\
+        \bottomrule  
+    \end{tabular}  
+\end{table}  
+
+\section{插入图片} % 第五章节  
+你可以通过以下命令插入图片：  
+\begin{figure}[h]  
+    \centering  
+    \includegraphics[width=0.5\textwidth]{example-image} % 请确保有此图片文件  
+    \caption{示例图片}  
+    \label{fig:sample}  
+\end{figure}  
+
+\section{结论} % 第六章节  
+以上是 LaTeX 的一些基本用法，希望这些示例对你有所帮助！   
+
+\end{document} % 文档结束
